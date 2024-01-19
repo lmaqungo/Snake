@@ -163,14 +163,14 @@ class MAIN:
         while True:
             
             screen.fill(white)
-            self.draw_text("Main Menu", 95, black, 7, 10)
+            self.draw_text("Main Menu", 18, black, 7, 10)
             
             mx, my = pygame.mouse.get_pos()
             
-            play_button = pygame.Rect(50, 40, 300, 80)
-            play_button.center = (200, 180)
-            options_button = pygame.Rect(50, 40, 300,80)
-            options_button.center = (200, 300)
+            play_button = pygame.Rect(50, 40, 70, 20)
+            play_button.center = (43, 45)
+            options_button = pygame.Rect(50, 40, 70,20)
+            options_button.center = (43, 75)
             
             
             if play_button.collidepoint((mx, my)):
@@ -181,11 +181,11 @@ class MAIN:
                 if MAIN.click:
                     self.options()
                     
-            pygame.draw.rect(screen, (255, 0, 0), play_button)
-            pygame.draw.rect(screen, (255, 0, 0), options_button)
+            pygame.draw.rect(screen, red, play_button)
+            pygame.draw.rect(screen, red, options_button)
             
-            self.draw_text("Play", 40,  black, 170, 155)
-            self.draw_text("Options",40, black, 146, 272)
+            self.draw_text("Play", 18,  black, 30, 33)
+            self.draw_text("Options",18, black, 22, 63)
             
             MAIN.click = False
             for event in pygame.event.get():
