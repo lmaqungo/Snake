@@ -3,6 +3,7 @@
 import pygame, sys
 from pygame.math import Vector2
 from random import randint
+from pygame import mixer
   
 # Initializing Pygame
 pygame.init()
@@ -20,6 +21,12 @@ purple= pygame.Color(102, 0, 204)
 orange = pygame.Color(255, 153, 51)
 lime = pygame.Color(178, 255, 102)
 sky_blue = pygame.Color(153, 255, 255)
+
+#load sounds
+game_over_fx = mixer.Sound("audio/Game_Over.wav")
+game_over_fx.set_volume(0.5)
+pick_up_fx = mixer.Sound("audio/Snake_Pickup_Food.wav")
+pick_up_fx.set_volume(0.5)
 
 
 # game constants 
@@ -100,6 +107,7 @@ class MAIN:
     
     def check_collision(self):
         if self.fruit.position == self.snake.body[0]:
+            pick_up_fx.play()
             self.snake.score += 1
             self.fruit.randomize()
             self.snake.add_new_block()
@@ -107,11 +115,13 @@ class MAIN:
     def check_fail(self):
         # checks if snake head collides with game borders
         if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:
+            game_over_fx.play()
             self.game_over()
     
         # check if snake head hits its own body 
         for block in self.snake.body[2:]:
             if block == self.snake.body[0]:
+                game_over_fx.play()
                 self.game_over()
     
     def game_over(self):
