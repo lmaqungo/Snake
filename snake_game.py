@@ -1,11 +1,11 @@
 
-# Importing the libraries
+
 import pygame, sys
 from pygame.math import Vector2
 from random import randint
 from pygame import mixer
   
-# Initializing Pygame
+
 pygame.init()
 
 # colours
@@ -113,7 +113,7 @@ class MAIN:
             self.snake.add_new_block()
             
     def check_fail(self):
-        # checks if snake head collides with game borders
+        # check if snake head collides with game borders
         if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:
             game_over_fx.play()
             self.game_over()
